@@ -1,85 +1,59 @@
 {
     "subgroup_4_7": {
         "swar_list": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
             [
-                "outputs\\working_composition\\0_row7_col1_x118_y231_w9_h13.png"
+                "outputs\\working_composition\\0_row5_col12_x406_y162_w10_h12.png"
             ],
             [
-                "outputs\\working_composition\\0_row7_col2_x139_y236_w9_h4.png"
+                "outputs\\working_composition\\0_row5_col13_x439_y162_w10_h14.png"
             ],
             [
-                "outputs\\working_composition\\0_row7_col3_x159_y227_w14_h16.png"
-            ],
-            [
-                "outputs\\working_composition_segmented\\0_row7_col4_x181_y227_w17_h16_lower.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col5_x215_y227_w15_h16.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col6_x240_y235_w10_h5.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col7_x260_y235_w11_h5.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col8_x281_y226_w14_h17.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col9_x304_y226_w14_h16.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col10_x339_y227_w15_h15.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col11_x376_y235_w9_h4.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col12_x405_y225_w7_h17.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col13_x434_y226_w15_h15.png"
-            ],
-            [
-                "outputs\\working_composition\\0_row7_col14_x470_y234_w10_h4.png"
+                "outputs\\working_composition\\0_row5_col14_x472_y166_w9_h5.png"
             ]
         ],
         "kann_swar_list": [
             [],
             [],
-            [
-                "outputs\\working_composition\\0_row7_col3_x156_y211_w14_h12.png"
-            ],
-            [
-                "outputs\\working_composition_segmented\\0_row7_col4_x181_y214_w17_h9_upper.png"
-            ],
             [],
             [],
             [],
             [],
-            [
-                "outputs\\working_composition\\0_row7_col9_x303_y213_w8_h8.png"
-            ],
+            [],
+            [],
+            [],
             [],
             [],
             [
-                "outputs\\working_composition\\0_row7_col12_x401_y211_w13_h10.png"
+                "outputs\\working_composition\\0_row4_col12_x400_y145_w7_h10.png"
             ],
-            [],
+            [
+                "outputs\\working_composition\\0_row4_col13_x434_y145_w9_h10.png"
+            ],
             []
         ],
         "swar_articulation_checks": [
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
             false,
             false,
             false
@@ -96,9 +70,9 @@
             [],
             [],
             [],
-            [],
-            [],
-            []
+            false,
+            false,
+            false
         ],
         "lyrics_list": [
             [],
@@ -112,9 +86,15 @@
             [],
             [],
             [],
-            [],
-            [],
-            []
+            [
+                "outputs\\working_composition\\0_row6_col12_x405_y188_w11_h15.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row6_col13_x436_y188_w14_h12.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row6_col14_x473_y187_w8_h12.png"
+            ]
         ],
         "meend_list": [
             "",
@@ -940,6 +920,154 @@
         ],
         "meend_list": [
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "subgroup_29_33": {
+        "swar_list": [
+            [
+                "outputs\\working_composition\\0_row30_col1_x113_y663_w11_h12.png"
+            ],
+            [
+                "outputs\\working_composition_segmented\\0_row30_col2_x133_y658_w21_h12_seg1.png",
+                "outputs\\working_composition_segmented\\0_row30_col2_x133_y658_w21_h12_seg2.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col3_x163_y657_w8_h19.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col4_x181_y658_w15_h17.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col5_x203_y658_w15_h17.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col6_x239_y663_w10_h12.png"
+            ],
+            [
+                "outputs\\working_composition_segmented\\0_row30_col7_x265_y658_w19_h14_seg1.png",
+                "outputs\\working_composition_segmented\\0_row30_col7_x265_y658_w19_h14_seg2.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col8_x303_y662_w10_h13.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col10_x336_y662_w11_h14.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row30_col11_x370_y667_w10_h4.png"
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "kann_swar_list": [
+            [
+                "outputs\\working_composition\\0_row29_col1_x112_y645_w10_h10.png"
+            ],
+            [],
+            [],
+            [],
+            [],
+            [
+                "outputs\\working_composition\\0_row29_col6_x233_y645_w10_h9.png"
+            ],
+            [],
+            [
+                "outputs\\working_composition\\0_row29_col8_x298_y646_w7_h10.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row29_col10_x332_y646_w9_h10.png"
+            ],
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "swar_articulation_checks": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "lyrics_articulation_checks": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "lyrics_list": [
+            [
+                "outputs\\working_composition\\0_row32_col1_x113_y688_w15_h16.png"
+            ],
+            [
+                "outputs\\working_composition_segmented\\0_row32_col2_x138_y691_w13_h11_seg1.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col3_x167_y692_w7_h12.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col4_x185_y692_w12_h13.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col5_x207_y692_w10_h12.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col6_x238_y691_w15_h13.png"
+            ],
+            [
+                "outputs\\working_composition_segmented\\0_row32_col7_x270_y690_w13_h11_seg1.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col8_x304_y691_w8_h12.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col10_x334_y691_w14_h13.png"
+            ],
+            [
+                "outputs\\working_composition\\0_row32_col11_x371_y691_w8_h12.png"
+            ],
+            [],
+            [],
+            [],
+            []
+        ],
+        "meend_list": [
             "",
             "",
             "",

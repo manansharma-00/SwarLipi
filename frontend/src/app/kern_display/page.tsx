@@ -7,6 +7,7 @@ interface KernSection {
   text: string;
   kern: string;
 }
+const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:5000' // Replace with your actual backend URL
 
 interface KernData {
   metadata: {
@@ -66,7 +67,7 @@ const KernDisplay: React.FC = () => {
           return;
         }
 
-        const response = await fetch('http://127.0.0.1:5000/get_kern_data', {
+        const response = await fetch(`${BACKEND_URL}/get_kern_data`, {
           credentials: 'include'
         });
         if (response.ok) {
@@ -151,7 +152,7 @@ const KernDisplay: React.FC = () => {
     
     try {
       setSaveStatus('saving');
-      const response = await fetch('http://127.0.0.1:5000/save_kern', {
+      const response = await fetch(`${BACKEND_URL}/save_kern`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -283,14 +284,14 @@ const KernDisplay: React.FC = () => {
         </div>
       </div>
       
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-8">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-xs overflow-hidden mb-8">
         {activeTab === 'formatted' ? (
           <div>
             <div className={`p-4 border-b ${getSectionBgColor('metadata')}`}>
               <h2 className="text-xl font-semibold mb-3 text-gray-800">Metadata</h2>
               {editMode ? (
                 <textarea
-                  className="w-full p-3 font-mono text-sm border border-gray-300 rounded bg-yellow-50 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 font-mono text-sm border border-gray-300 rounded bg-yellow-50 resize-y focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                   value={displayData?.metadata.header_text || ''}
                   onChange={handleMetadataTextChange}
                   rows={5}
@@ -312,7 +313,7 @@ const KernDisplay: React.FC = () => {
                 </h2>
                 {editMode ? (
                   <textarea
-                    className="w-full p-3 font-mono text-sm border border-gray-300 rounded bg-yellow-50 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 font-mono text-sm border border-gray-300 rounded bg-yellow-50 resize-y focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                     value={section.text}
                     onChange={(e) => handleSectionTextChange(index, e)}
                     rows={5}

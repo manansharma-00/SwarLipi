@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000';
 const UploadPage = () => {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
@@ -28,7 +28,7 @@ const UploadPage = () => {
     formData.append("file", file);
 
     try {
-      const uploadRes = await fetch("http://127.0.0.1:5000/upload", {
+      const uploadRes = await fetch(`${BACKEND_URL}/upload`, {
         method: "POST",
         credentials: "include",
         body: formData,
@@ -37,7 +37,7 @@ const UploadPage = () => {
       const uploadData = await uploadRes.json();
       if (!uploadRes.ok) throw new Error(uploadData.error || "Upload failed");
 
-      const rowsRes = await fetch("http://127.0.0.1:5000/get_initial_rows", {
+      const rowsRes = await fetch(`${BACKEND_URL}/get_initial_rows`, {
         method: "GET",
         credentials: "include",
       });

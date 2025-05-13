@@ -5,6 +5,7 @@ interface ImageInfo {
   url: string;
   filename: string;
 }
+const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:5000' // Replace with your actual backend URL
 
 interface FormData {
   raag: string;
@@ -67,7 +68,7 @@ const handleSave = async () => {
   }
 
   try {
-    const response = await fetch('http://127.0.0.1:5000/update_initial_rows', {
+    const response = await fetch(`${BACKEND_URL}/update_initial_rows`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -107,7 +108,7 @@ const handleSave = async () => {
       const imageUrls = await Promise.all(
         rowImages.map(async (filename) => {
           try {
-            const imageResponse = await fetch(`http://127.0.0.1:5000/image/${filename}`);
+            const imageResponse = await fetch(`${BACKEND_URL}/image/${filename}`);
             if (!imageResponse.ok) {
               throw new Error(`Failed to fetch image: ${filename}`);
             }
