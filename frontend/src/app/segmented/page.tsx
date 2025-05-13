@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
 interface PredictionData {
   metadata: {
     a: string;
@@ -15,9 +16,7 @@ interface PredictionData {
     };
   };
 }
-console.log('Backend URL:', process.env.NEXT_PUBLIC_BACKEND_URL);
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000';
-console.log(BACKEND_URL)
+
 interface SubgroupData {
   [subgroupKey: string]: {
     swar_list: string[][];
@@ -39,6 +38,8 @@ interface ImageInfo {
   url: string;
   filename: string;
 }
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5000';
 
 const Segmented: React.FC = () => {
   const router = useRouter();
@@ -182,21 +183,25 @@ const Segmented: React.FC = () => {
     try {
       setIsSubmitting(true);
       
+      // Use edited data if in edit mode, otherwise use original data
+      const predictionsToSubmit = editMode ? editedData : data?.predictions;
+      
+      if (!predictionsToSubmit) {
+        throw new Error('No data to submit');
+      }
+
       const postData = {
-        predictions: {
-          predictions: data?.predictions.predictions,
-          metadata: data?.predictions.metadata
-        },
+        predictions: predictionsToSubmit,
         subgroups: data?.subgroups,
         row_paths: data?.row_paths
       };
-  
+
       try {
         localStorage.setItem('segmentedFinalData', JSON.stringify(postData));
       } catch (e) {
         console.warn('LocalStorage is full, falling back to server storage');
       }
-  
+
       const response = await fetch(`${BACKEND_URL}/final_save`, {
         method: 'POST',
         headers: {
@@ -204,12 +209,12 @@ const Segmented: React.FC = () => {
         },
         body: JSON.stringify(postData)
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || 'Failed to submit final data');
       }
-  
+
       const responseData = await response.json();
       
       localStorage.setItem('kernDisplayData', JSON.stringify(responseData.kern_data));
@@ -349,53 +354,50 @@ const Segmented: React.FC = () => {
         return;
       }
       
-      const processedData = JSON.parse(JSON.stringify(editedData));
-      if (processedData) {
-        Object.keys(processedData.predictions).forEach(subgroupKey => {
-          if (processedData.predictions[subgroupKey].kann_swar) {
-            processedData.predictions[subgroupKey].kann_swar = 
-              processedData.predictions[subgroupKey].kann_swar.map((value: string | string[]) => {
-                if (typeof value === 'string') {
-                  return value.split(' ').map(v => v.trim()).filter(v => v !== '');
-                }
-                return value;
-              });
-          }
-          
-          if (processedData.predictions[subgroupKey].swar) {
-            processedData.predictions[subgroupKey].swar = 
-              processedData.predictions[subgroupKey].swar.map((value: string | string[]) => {
-                if (typeof value === 'string') {
-                  return value.split(' ').map(v => v.trim()).filter(v => v !== '');
-                }
-                return value;
-              });
-          }
-        });
+      if (!editedData || !data) {
+        throw new Error('No data to save');
       }
 
+      // Update the data with edited values first
+      const updatedData = {
+        ...data,
+        predictions: editedData
+      };
+
+      // Prepare the data to be sent to final_save
+      const postData = {
+        predictions: editedData,
+        subgroups: data.subgroups,
+        row_paths: data.row_paths
+      };
+
+      // Save to localStorage if needed
+      try {
+        localStorage.setItem('segmentedFinalData', JSON.stringify(postData));
+      } catch (e) {
+        console.warn('LocalStorage is full, falling back to server storage');
+      }
+
+      // Post directly to final_save
       const response = await fetch(`${BACKEND_URL}/final_save`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          predictions: processedData,
-          subgroups: data?.subgroups,
-          row_paths: data?.row_paths
-        })
+        body: JSON.stringify(postData)
       });
       
       if (!response.ok) throw new Error('Failed to save changes');
       
       const responseData = await response.json();
-      setData(prevData => prevData ? { ...prevData, predictions: processedData } : null);
-      setEditedData(processedData);
+      
+      // Update local state with the new data
+      setData(updatedData);
+      setEditedData(editedData);
       setEditMode(false);
       
-      if (responseData.kern_data) {
-        const queryParams = new URLSearchParams();
-        queryParams.set('data', JSON.stringify({ kernData: responseData.kern_data }));
-        router.push('/kern_display?' + queryParams.toString());
-      }
+      // Store kern data and redirect
+      localStorage.setItem('kernDisplayData', JSON.stringify(responseData.kern_data));
+      router.push('/kern_display');
+      
     } catch (err) {
       console.error('Error saving changes:', err);
       alert('Failed to save changes');
@@ -408,8 +410,7 @@ const Segmented: React.FC = () => {
   };
 
   const handleAddCell = (subgroupKey: string, type: 'kann_swar' | 'swar', position?: number) => {
-    console.log(subgroupKey, position)
-    if (!editedData) return;
+    if (!editedData || !data) return;
 
     setEditedData(prevData => {
       if (!prevData) return null;
@@ -430,7 +431,6 @@ const Segmented: React.FC = () => {
       return newData;
     });
 
-
     setData(prevData => {
       if (!prevData) return null;
       const newData = {...prevData};
@@ -446,7 +446,7 @@ const Segmented: React.FC = () => {
   };
 
   const handleDeleteCell = (subgroupKey: string, type: 'kann_swar' | 'swar', index: number) => {
-    if (!editedData) return;
+    if (!editedData || !data) return;
 
     setEditedData(prevData => {
       if (!prevData) return null;
